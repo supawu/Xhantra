@@ -39,6 +39,8 @@ public class Locomotion : MonoBehaviour
 
     moveDirection = cameraObject.forward * inputManager.vertical;
     moveDirection += cameraObject.right * inputManager.horizontal;
+    moveDirection.Normalize();
+    moveDirection.y =0;
 
     float speed = movementSpeed;
     moveDirection *= speed;

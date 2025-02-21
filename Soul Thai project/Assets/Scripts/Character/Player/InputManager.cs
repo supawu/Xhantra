@@ -14,10 +14,27 @@ public class InputManager : MonoBehaviour
   public float mouseX;
   public float mouseY;
   PlayerControls playercontrols;
+  CameraHandler cameraHandler;
   [SerializeField] Vector2 movementInput = Vector2.zero;
   [SerializeField] Vector2 cameraInput = Vector2.zero;
 
-  private void OnEnable()//Getting input method 
+    private void Awake()
+    {
+       cameraHandler = CameraHandler.singleton;
+    }
+
+    private void FixedUpdate()
+    {
+        float delta = Time.fixedDeltaTime;
+
+        if(cameraHandler != null)
+        {
+          cameraHandler.FollowTarget(delta);
+          cameraHandler.HandleCameraRotation(delta, mouseX,mouseY);
+        }
+    }
+
+    private void OnEnable()//Getting input method 
   {
     if (playercontrols == null) //Check if there is control
     {
