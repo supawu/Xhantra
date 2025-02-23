@@ -3,15 +3,17 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
+    PlayerManager playerManager;
     public Animator anim;
-    public InputManager inputManager;
-    public Locomotion playerLocomotion;
+    InputManager inputManager;
+    Locomotion playerLocomotion;
     int vertical;
     int horizontal;
     public bool canRotate;
 
     public void Initialize()
-    {
+    {   
+        playerManager = GetComponentInParent<PlayerManager>();
         anim = GetComponent<Animator>();
         inputManager=GetComponentInParent<InputManager>();
         playerLocomotion = GetComponentInParent<Locomotion>();
@@ -101,14 +103,14 @@ public class AnimationManager : MonoBehaviour
         canRotate = true;
         if (inputManager != null)
         {
-            inputManager.isInteract = false;
+            playerManager.isInteract = false;
         }
     }
 
     [System.Obsolete]
     private void OAnimatorMove()
     {
-        if(inputManager.isInteract == false)
+        if(playerManager.isInteract == false)
             return;
 
         float delta = Time.deltaTime;

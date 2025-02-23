@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Locomotion : MonoBehaviour
 {
+    PlayerManager playerManager;
     Transform cameraObject;
     InputManager inputManager;
     Vector3 moveDirection;
@@ -14,7 +15,7 @@ public class Locomotion : MonoBehaviour
     public new Rigidbody rigidbody;
     public GameObject normalCamera; //non lock camera
 
-    [Header("Stats")]
+    [Header("Movement Stats")]
     [SerializeField]
     float movementSpeed = 5;
     [SerializeField]
@@ -22,6 +23,7 @@ public class Locomotion : MonoBehaviour
 
     void Start()
     {
+        playerManager = GetComponent<PlayerManager>();
         rigidbody = GetComponent<Rigidbody>();
         inputManager = GetComponent<InputManager>();
         animationManager = GetComponentInChildren<AnimationManager>();
@@ -31,18 +33,7 @@ public class Locomotion : MonoBehaviour
 
     }
 
-    public void Update()
-    {
-        float delta = Time.deltaTime;
-
-        inputManager.TickInput(delta);
-        HandleMovement(delta);
-        HandleRolling(delta);
-
-
-
-
-    }
+   
 
     #region Movement
     Vector3 normalVector;
@@ -80,10 +71,7 @@ public class Locomotion : MonoBehaviour
         moveDirection.Normalize();
         moveDirection.y = 0;
 
-        /*if (animationManager.animate.GetBool("isInteract"))
-        {
-            return; //from chatgpt
-        }*/
+       
 
         float speed = movementSpeed;
         moveDirection *= speed;
