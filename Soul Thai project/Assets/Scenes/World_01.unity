@@ -5815,6 +5815,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5745556688042940719, guid: 38f53016a3301b84cbfe9df2ea77d9fc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1721569419}
+    - targetCorrespondingSourceObject: {fileID: 5745556688042940719, guid: 38f53016a3301b84cbfe9df2ea77d9fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1721569423}
   m_SourcePrefab: {fileID: 100100000, guid: 38f53016a3301b84cbfe9df2ea77d9fc, type: 3}
 --- !u!1 &686565254
 GameObject:
@@ -14715,6 +14718,9 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
+  b_input: 0
+  rollFlag: 0
+  isInteract: 0
   movementInput: {x: 0, y: 0}
   cameraInput: {x: 0, y: 0}
 --- !u!114 &1721569419
@@ -14729,13 +14735,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48991e774d487074cbf0934d3cd7f5ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animate: {fileID: 0}
+  anim: {fileID: 0}
+  inputManager: {fileID: 0}
+  playerLocomotion: {fileID: 0}
   canRotate: 1
 --- !u!4 &1721569420 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4969583587140240277, guid: 38f53016a3301b84cbfe9df2ea77d9fc, type: 3}
   m_PrefabInstance: {fileID: 685468244}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1721569423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721569408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406c7a7828fbe394789bd27a72472ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!1 &1726348232
 GameObject:
   m_ObjectHideFlags: 0

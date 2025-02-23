@@ -2,6 +2,7 @@ using System;
 
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,10 @@ public class InputManager : MonoBehaviour
   public float moveAmount;
   public float mouseX;
   public float mouseY;
+  public bool b_input;
+  public bool rollFlag;
+  public bool isInteract;
+
   PlayerControls playercontrols;
   CameraHandler cameraHandler;
   [SerializeField] Vector2 movementInput = Vector2.zero;
@@ -56,6 +61,7 @@ public class InputManager : MonoBehaviour
   public void TickInput(float delta)
   {
     MoveInput(delta);
+    HandleRollInput(delta);
   }
   public void MoveInput(float delta)
   {
@@ -65,4 +71,17 @@ public class InputManager : MonoBehaviour
     mouseX = cameraInput.x;
     mouseY = cameraInput.y;
   }
+
+  private void HandleRollInput(float delta)
+  {
+    b_input = playercontrols.PlayerAction.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+
+    if(b_input)
+    {
+      rollFlag = true;
+     
+    }
+   
+  }
+ 
 }

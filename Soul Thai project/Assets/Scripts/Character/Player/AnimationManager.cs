@@ -3,16 +3,21 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
-    public Animator animate;
+    public Animator anim;
+    public InputManager inputManager;
+    public Locomotion playerLocomotion;
     int vertical;
     int horizontal;
     public bool canRotate;
 
     public void Initialize()
     {
-        animate = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+        inputManager=GetComponentInParent<InputManager>();
+        playerLocomotion = GetComponentInParent<Locomotion>();
         vertical = Animator.StringToHash("Vertical");
         horizontal = Animator.StringToHash("Horizontal");
+        canRotate=true; //Ensure it starts as true (Rolling Fixed)
 
     }
     public void UpdateAnimatorValues(float vericalMovement,float horizontalMovement)
@@ -66,11 +71,21 @@ public class AnimationManager : MonoBehaviour
         }
         #endregion
         
-        animate.SetFloat(vertical,v,0.1f,Time.deltaTime);
-        animate.SetFloat(horizontal,h,0.1f,Time.deltaTime);
+        anim.SetFloat(vertical,v,0.1f,Time.deltaTime);
+        anim.SetFloat(horizontal,h,0.1f,Time.deltaTime);
 
     }
 
+    public void PlayTargetAnimation(string targetAnim , bool isInteract)
+    {
+       
+        anim.SetBool("isInteract",isInteract);
+        anim.CrossFade(targetAnim,0.2f);
+
+       
+    }
+      
+        
     public void CanRotate()
     {
         canRotate = true;
@@ -78,5 +93,31 @@ public class AnimationManager : MonoBehaviour
     public void StopRotation()
     {
         canRotate=false;
+    }
+
+
+     public void OnRollAnimationEnd()
+    {
+        anim.SetBool("isInteract", false);
+        anim.applyRootMotion = false;
+        canRotate = true;
+        if (inputManager != null)
+        {
+            inputManager.isInteract = false;
+        }
+    }
+
+    [System.Obsolete]
+    private void OAnimatorMove()
+    {
+        if(inputManager.isInteract == false)
+            return;
+
+        float delta = Time.deltaTime;
+        playerLocomotion.rigidbody.drag =0;
+        Vector3 deltaPosition = anim.deltaPosition;
+        deltaPosition.y = 0;
+        Vector3 velocity = deltaPosition /delta;
+        playerLocomotion.rigidbody.linearVelocity = velocity;
     }
 }
