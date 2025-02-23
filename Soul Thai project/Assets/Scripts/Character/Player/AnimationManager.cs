@@ -78,11 +78,9 @@ public class AnimationManager : MonoBehaviour
 
     public void PlayTargetAnimation(string targetAnim , bool isInteract)
     {
-       
         anim.SetBool("isInteract",isInteract);
         anim.CrossFade(targetAnim,0.2f);
 
-       
     }
       
         
