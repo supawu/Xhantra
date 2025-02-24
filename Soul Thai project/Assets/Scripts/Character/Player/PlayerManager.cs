@@ -43,6 +43,7 @@ public class PlayerManager : MonoBehaviour
           cameraHandler.HandleCameraRotation(delta, inputManager.mouseX, inputManager.mouseY);
         } 
     }
+    
 
     private void LateUpdate()
     {

@@ -20,6 +20,7 @@ public class Locomotion : MonoBehaviour
     float movementSpeed = 5;
     [SerializeField]
     float rotationSpeed = 10;
+    float rollingSpeedMultiplier = 1.9f;
 
     void Start()
     {
@@ -74,6 +75,12 @@ public class Locomotion : MonoBehaviour
        
 
         float speed = movementSpeed;
+
+        if (animationManager.anim.GetCurrentAnimatorStateInfo(0).IsName("Rolling"))//Increasing Speed when we roll
+        {
+            speed *= rollingSpeedMultiplier;
+        }
+        
         moveDirection *= speed;
 
         Vector3 normalVector = Vector3.up;
@@ -107,6 +114,8 @@ public class Locomotion : MonoBehaviour
                 moveDirection.y =0;
                 Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                 myTransform.rotation = rollRotation;
+
+                
             }
             else
             {
@@ -115,5 +124,7 @@ public class Locomotion : MonoBehaviour
             inputManager.rollFlag =false;
         }
     }
+
+    
     #endregion
 }
