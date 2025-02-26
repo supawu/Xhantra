@@ -15,29 +15,27 @@ public class InputManager : MonoBehaviour
   public float mouseX;
   public float mouseY;
   public bool b_input;
+  public bool left;
+  public bool right;
   public bool rollFlag;
-  public bool isInteract;
+  
 
   PlayerControls playercontrols;
-  CameraHandler cameraHandler;
+  PlayerAttacker playerAttacker;
+  PlayerInventory playerInventory;
+ 
   [SerializeField] Vector2 movementInput = Vector2.zero;
   [SerializeField] Vector2 cameraInput = Vector2.zero;
 
-    private void Awake()
+    void Awake()
     {
-       cameraHandler = CameraHandler.singleton;
+        playerAttacker = GetComponent<PlayerAttacker>();
+        playerInventory = GetComponent<PlayerInventory>();
     }
 
-    private void FixedUpdate()
-    {
-        float delta = Time.fixedDeltaTime;
 
-        if(cameraHandler != null)
-        {
-          cameraHandler.FollowTarget(delta);
-          cameraHandler.HandleCameraRotation(delta, mouseX,mouseY);
-        }
-    }
+
+
 
     private void OnEnable()//Getting input method 
   {
@@ -62,6 +60,7 @@ public class InputManager : MonoBehaviour
   {
     MoveInput(delta);
     HandleRollInput(delta);
+    HandleAttackInput(delta);
   }
   public void MoveInput(float delta)
   {
@@ -84,4 +83,21 @@ public class InputManager : MonoBehaviour
    
   }
  
+  private void HandleAttackInput(float delta)
+  {
+    playercontrols.PlayerAction.Light.performed += i => left = true;
+    playercontrols.PlayerAction.Heavy.performed += i => right = true;
+
+
+    if(left)
+    {
+      playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+    }
+
+    if(right)
+    {
+      playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+    }
+    
+  }
 }

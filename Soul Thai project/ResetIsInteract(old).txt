@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ResetIsInteracting : StateMachineBehaviour
+public class ResetAnimatorBool : StateMachineBehaviour
 {
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -15,10 +15,10 @@ public class ResetIsInteracting : StateMachineBehaviour
         }
         
         // Get the InputManager and reset its state
-        InputManager inputManager = animator.GetComponentInParent<InputManager>();
-        if (inputManager != null)
+        PlayerManager playerManager = animator.GetComponentInParent<PlayerManager>();
+        if (playerManager != null)
         {
-            inputManager.isInteract = false;
+            playerManager.isInteract = false;
         }
     }
 }

@@ -45,9 +45,11 @@ public class PlayerManager : MonoBehaviour
     }
     
 
-    private void LateUpdate()
+    private void LateUpdate()//when hitte button at the end of the frame it stops
     {
         inputManager.rollFlag = false;
+        inputManager.left = false;
+        inputManager.right = false;
     }
 
 
