@@ -96,10 +96,12 @@ public class InputManager : MonoBehaviour
       playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
       audioManager.PlaySFX(audioManager.hit);
     }
-
+ 
     if(right)
     {
       playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+      audioManager.PlaySFX(audioManager.hardHit);
+
     }
     
   }
