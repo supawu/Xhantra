@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &42623157
+--- !u!1 &150593980
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,24 +127,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 42623158}
+  - component: {fileID: 150593981}
   m_Layer: 0
-  m_Name: Setting object(Script)
+  m_Name: Mainmenu Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &42623158
+--- !u!4 &150593981
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42623157}
+  m_GameObject: {fileID: 150593980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 556.4181, y: 200.16136, z: 289.86215}
+  m_LocalPosition: {x: -533.15424, y: -392.47156, z: 457.6782}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1211,7 +1211,6 @@ GameObject:
   - component: {fileID: 1513173739}
   - component: {fileID: 1513173738}
   - component: {fileID: 1513173737}
-  - component: {fileID: 1513173736}
   m_Layer: 5
   m_Name: Canvas(Title Screen)
   m_TagString: Untagged
@@ -1219,18 +1218,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1513173736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513173735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e89f51402231394abf86614de733221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1513173737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1404,7 +1391,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1011064621}
         m_TargetAssemblyTypeName: WorldButton, Assembly-CSharp
-        m_MethodName: LoadWorld1
+        m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1670,7 +1657,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1011064621}
         m_TargetAssemblyTypeName: WorldButton, Assembly-CSharp
-        m_MethodName: LoadWorld1
+        m_MethodName: LoadSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1718,37 +1705,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837760676}
   m_CullTransparentMesh: 1
---- !u!1 &2022928411
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2022928412}
-  m_Layer: 0
-  m_Name: Exit object (Script)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2022928412
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2022928411}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 556.4181, y: 200.16136, z: 289.86215}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2141767546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,5 +1851,4 @@ SceneRoots:
   - {fileID: 1513173740}
   - {fileID: 220416687}
   - {fileID: 1011064622}
-  - {fileID: 42623158}
-  - {fileID: 2022928412}
+  - {fileID: 150593981}

@@ -8,4 +8,26 @@ public class WorldButton : MonoBehaviour
         SceneManager.LoadScene(1);
     }
    }
+
+   public void LoadSettings()
+    {
+        if (Application.CanStreamedLevelBeLoaded("Settings"))
+        {
+            SceneManager.LoadScene("Settings");
+        }
+    }
+
+     public void ExitGame()
+    {
+        Debug.Log("Game is exiting...");
+        Application.Quit();
+    }
+
+    public void LoadMainMenu()
+    {
+        if (Application.CanStreamedLevelBeLoaded("Scene_Menu"))
+        {
+            SceneManager.LoadScene("Scene_Menu");
+        }
+    }
 }

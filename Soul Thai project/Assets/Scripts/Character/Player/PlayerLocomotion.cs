@@ -20,7 +20,7 @@ public class Locomotion : MonoBehaviour
     float movementSpeed = 5;
     [SerializeField]
     float rotationSpeed = 10;
-    float rollingSpeedMultiplier = 1.7f;
+    float rollingSpeedMultiplier = 2f;
 
     void Start()
     {
