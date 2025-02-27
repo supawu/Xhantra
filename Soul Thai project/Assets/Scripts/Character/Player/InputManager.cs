@@ -23,14 +23,16 @@ public class InputManager : MonoBehaviour
   PlayerControls playercontrols;
   PlayerAttacker playerAttacker;
   PlayerInventory playerInventory;
+  AudioManager audioManager;
  
   [SerializeField] Vector2 movementInput = Vector2.zero;
   [SerializeField] Vector2 cameraInput = Vector2.zero;
 
     void Awake()
-    {
+    {//Get an acces as Component
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
+        audioManager = GetComponent<AudioManager>();
     }
 
 
@@ -92,6 +94,7 @@ public class InputManager : MonoBehaviour
     if(left)
     {
       playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+      audioManager.PlaySFX(audioManager.hit);
     }
 
     if(right)
