@@ -11228,13 +11228,15 @@ GameObject:
   - component: {fileID: 1158086674}
   - component: {fileID: 1158086673}
   - component: {fileID: 1158086672}
+  - component: {fileID: 1158086676}
+  - component: {fileID: 1158086677}
   m_Layer: 5
   m_Name: Canvas (Die)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1158086672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11318,6 +11320,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1158086676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158086671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89e77f51c9f38c42ad350bd5c9f0b62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DieScreen: {fileID: 1158086671}
+--- !u!114 &1158086677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158086671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 062b1ec864a2e9a4589cfdfe2b7d46dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthLevel: 10
+  maxHealth: 0
+  currentHealth: 0
+  healthbar: {fileID: 2169173112799696280}
 --- !u!1 &1193552114 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2956073282977923987, guid: 16e2051b2dba3de4da749127cf7f1d0d, type: 3}

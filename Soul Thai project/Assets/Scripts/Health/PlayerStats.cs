@@ -10,6 +10,10 @@ public class PlayerStats : MonoBehaviour
 
     AnimationManager animationManager;
 
+    // Event to notify when the player dies
+    public delegate void OnPlayerDeath();
+    public static event OnPlayerDeath onPlayerDeath;
+
     private void Awake()
     {
         animationManager = GetComponentInChildren<AnimationManager>();
@@ -35,10 +39,13 @@ public class PlayerStats : MonoBehaviour
 
         animationManager.PlayTargetAnimation("GetHit", true);
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             currentHealth = 0;
             animationManager.PlayTargetAnimation("Death", true);
+
+            // Trigger the death event
+            onPlayerDeath?.Invoke();
         }
     }
 }
