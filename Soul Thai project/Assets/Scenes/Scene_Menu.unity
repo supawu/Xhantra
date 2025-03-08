@@ -953,7 +953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1011064622}
-  - component: {fileID: 1011064621}
+  - component: {fileID: 1011064623}
   m_Layer: 0
   m_Name: WorldButton object(Script)
   m_TagString: Untagged
@@ -961,18 +961,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1011064621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011064620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a21d430b5a2cc9e48b1b5bc51db319f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1011064622
 Transform:
   m_ObjectHideFlags: 0
@@ -988,6 +976,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1011064623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011064620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3004fef62abd8f4594c7b2cd69b64b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1020543043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,8 +1389,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1011064621}
-        m_TargetAssemblyTypeName: WorldButton, Assembly-CSharp
+      - m_Target: {fileID: 1011064623}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
@@ -1522,8 +1522,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1011064621}
-        m_TargetAssemblyTypeName: WorldButton, Assembly-CSharp
+      - m_Target: {fileID: 1011064623}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: LoadWorld1
         m_Mode: 1
         m_Arguments:
@@ -1655,9 +1655,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1011064621}
-        m_TargetAssemblyTypeName: WorldButton, Assembly-CSharp
-        m_MethodName: LoadSettings
+      - m_Target: {fileID: 1011064623}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: LoadSettingMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
