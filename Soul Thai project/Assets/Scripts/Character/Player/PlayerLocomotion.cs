@@ -20,7 +20,11 @@ public class Locomotion : MonoBehaviour
     float movementSpeed = 5;
     [SerializeField]
     float rotationSpeed = 10;
-    float rollingSpeedMultiplier = 2f;
+    [SerializeField] float rollForce = 1.5f; // Direct rolling speed instead of multiplier
+    [SerializeField] float rollDuration = 0.15f;
+    private bool isRolling = false;
+    private float rollTimeRemaining = 0f;
+    private Vector3 rollDirection;
 
     void Start()
     {
@@ -33,8 +37,21 @@ public class Locomotion : MonoBehaviour
         animationManager.Initialize();
 
     }
+    void Update()
+    {
+        if (isRolling)
+        {
+            rollTimeRemaining -= Time.deltaTime;
+            if (rollTimeRemaining <= 0)
+            {
+                isRolling = false;
+                animationManager.anim.SetBool("Rolling", false);
+                Debug.Log("Roll ended");
+            }
+        }
+    }
 
-   
+
 
     #region Movement
     Vector3 normalVector;
@@ -67,64 +84,80 @@ public class Locomotion : MonoBehaviour
     public void HandleMovement(float delta)
 
     {
-        moveDirection = cameraObject.forward * inputManager.vertical;
-        moveDirection += cameraObject.right * inputManager.horizontal;
-        moveDirection.Normalize();
-        moveDirection.y = 0;
-
-       
-
-        float speed = movementSpeed;
-
-        if (animationManager.anim.GetCurrentAnimatorStateInfo(0).IsName("Rolling"))//Increasing Speed when we roll
+        if (animationManager.anim.GetBool("isInteract"))
         {
-            speed *= rollingSpeedMultiplier;
+            // Only update animation values but don't apply movement
+            animationManager.UpdateAnimatorValues(0, 0);
+            return;
         }
-        
-        moveDirection *= speed;
-
-        Vector3 normalVector = Vector3.up;
-        Vector3 projectVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-
-        animationManager.UpdateAnimatorValues(inputManager.moveAmount, 0);
-
-        rigidbody.linearVelocity = projectVelocity;
-
-        if (animationManager.canRotate)
+        if (!isRolling)
         {
-            HandleRotation(delta);
+            moveDirection = cameraObject.forward * inputManager.vertical;
+            moveDirection += cameraObject.right * inputManager.horizontal;
+            moveDirection.Normalize();
+            moveDirection.y = 0;
+
+            moveDirection *= movementSpeed;
+
+            Vector3 normalVector = Vector3.up;
+            Vector3 projectVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
+
+            animationManager.UpdateAnimatorValues(inputManager.moveAmount, 0);
+
+            rigidbody.linearVelocity = new Vector3(projectVelocity.x, rigidbody.linearVelocity.y, projectVelocity.z);
+
+            if (animationManager.canRotate)
+            {
+                HandleRotation(delta);
+            }
+        }
+        else
+        {
+            // During rolling, just update animation values
+            animationManager.UpdateAnimatorValues(1, 0);
         }
     }
 
     public void HandleRolling(float delta)
     {
-        if(animationManager.anim.GetBool("isInteract"))
+        if (inputManager.rollFlag && !isRolling)
         {
-            return;
-        }
-
-        if (inputManager.rollFlag)
-        {
-            moveDirection = cameraObject.forward * inputManager.vertical;
-            moveDirection += cameraObject.right * inputManager.horizontal;
-
-            if(inputManager.moveAmount >0)
+            // Only roll if we're moving and not already rolling
+            if (inputManager.moveAmount > 0 && !animationManager.anim.GetBool("isInteract"))
             {
-                animationManager.PlayTargetAnimation("Rolling",true);
-                moveDirection.y =0;
-                Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
-                myTransform.rotation = rollRotation;
+                // Get the direction to roll
+                rollDirection = cameraObject.forward * inputManager.vertical;
+                rollDirection += cameraObject.right * inputManager.horizontal;
+                rollDirection.Normalize();
 
-                
+                // Set up the roll
+                isRolling = true;
+                rollTimeRemaining = rollDuration;
+
+                // Play animation
+                animationManager.PlayTargetAnimation("Rolling", true);
+                animationManager.anim.SetBool("Rolling", true);
+
+                // Initial rotation towards roll direction
+                if (rollDirection != Vector3.zero)
+                {
+                    Quaternion rollRotation = Quaternion.LookRotation(rollDirection);
+                    myTransform.rotation = rollRotation;
+                }
+
+                // Apply a strong impulse force in the roll direction
+                rigidbody.linearVelocity = Vector3.zero; // Clear existing velocity
+                rigidbody.AddForce(rollDirection * rollForce, ForceMode.Impulse);
+
+                Debug.Log("Starting roll with force: " + rollForce);
             }
-            else
-            {
-                animationManager.PlayTargetAnimation("RunBackward",true);
-            }
-            inputManager.rollFlag =false;
+
+
+            inputManager.rollFlag = false;
         }
     }
 
-    
+
     #endregion
 }
+

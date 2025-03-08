@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
   public bool rollFlag;
   
 
+  
   PlayerControls playercontrols;
   PlayerAttacker playerAttacker;
   PlayerInventory playerInventory;
@@ -94,13 +95,12 @@ public class InputManager : MonoBehaviour
     if(left)
     {
       playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
-      audioManager.PlaySFX(audioManager.hit);
     }
  
     if(right)
     {
       playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
-      audioManager.PlaySFX(audioManager.hardHit);
+      
 
     }
     

@@ -8,11 +8,11 @@ public class PlayerManager : MonoBehaviour
     CameraHandler cameraHandler;
     Locomotion playerlocomotion;
 
-    
 
-     private void Awake()
+
+    private void Awake()
     {
-       cameraHandler = CameraHandler.singleton;
+        cameraHandler = CameraHandler.singleton;
     }
     void Start()
     {
@@ -22,34 +22,41 @@ public class PlayerManager : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
         float delta = Time.deltaTime;
 
         isInteract = anim.GetBool("isInteract");
-        
+
 
         inputManager.TickInput(delta);
         playerlocomotion.HandleMovement(delta);
+       
         playerlocomotion.HandleRolling(delta);
+        
     }
 
     private void FixedUpdate()
     {
-       float delta = Time.fixedDeltaTime;
+        float delta = Time.fixedDeltaTime;
 
-        if(cameraHandler != null)
+        if (cameraHandler != null)
         {
-          cameraHandler.FollowTarget(delta);
-          cameraHandler.HandleCameraRotation(delta, inputManager.mouseX, inputManager.mouseY);
-        } 
+            cameraHandler.FollowTarget(delta);
+            cameraHandler.HandleCameraRotation(delta, inputManager.mouseX, inputManager.mouseY);
+        }
     }
-    
+
 
     private void LateUpdate()//when hit the button at the end of the frame it stops
     {
         inputManager.rollFlag = false;
         inputManager.left = false;
         inputManager.right = false;
+
+        if (!anim.GetBool("isInteract"))
+    {
+        isInteract = false;
+    }
     }
 
 
