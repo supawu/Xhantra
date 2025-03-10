@@ -39,6 +39,7 @@ public class CameraHandler : MonoBehaviour
         myTransform=transform;//Configure myTransform variable to Game object Transform
         defaultPosition = cameraTransform.localPosition.z;
         ignoreLayers = ~(1 << 8 | 1 <<9 | 1<<10);
+        targetTransform = FindFirstObjectByType<PlayerManager>().transform;
     }
     
     public void FollowTarget(float delta)//Make the camer follow player

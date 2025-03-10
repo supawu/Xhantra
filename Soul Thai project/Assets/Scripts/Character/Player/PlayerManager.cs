@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        cameraHandler = CameraHandler.singleton;
+        cameraHandler = FindFirstObjectByType<CameraHandler>();
     }
     void Start()
     {
