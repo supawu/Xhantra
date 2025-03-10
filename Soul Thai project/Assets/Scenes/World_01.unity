@@ -741,7 +741,7 @@ Transform:
   m_GameObject: {fileID: 86935793}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.554, y: 1.132, z: 3.324}
+  m_LocalPosition: {x: 0.554, y: 1.132, z: 8.07}
   m_LocalScale: {x: 5.7288, y: 5.7288, z: 13.104015}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15687,7 +15687,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.194
+  m_Volume: 0.075
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -19261,7 +19261,7 @@ MonoBehaviour:
   movementSpeed: 5
   rotationSpeed: 10
   rollForce: 16
-  rollDuration: 0.05
+  rollDuration: 0.1
 --- !u!114 &1721569415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22165,7 +22165,7 @@ Transform:
   m_GameObject: {fileID: 1961094317}
   serializedVersion: 2
   m_LocalRotation: {x: -0.706527, y: 0.701443, z: 0.08901425, w: -0.029561806}
-  m_LocalPosition: {x: 0.479, y: 0.003, z: 2.451}
+  m_LocalPosition: {x: 0.479, y: 0.003, z: 7.197}
   m_LocalScale: {x: 5.6592, y: 5.6592, z: 5.6592}
   m_ConstrainProportionsScale: 0
   m_Children: []
