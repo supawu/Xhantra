@@ -46,6 +46,10 @@ public class Locomotion : MonoBehaviour
             {
                 isRolling = false;
                 animationManager.anim.SetBool("Rolling", false);
+                //animationManager.anim.applyRootMotion = true; // Re-enable root motion after rolling
+                //Debug.Log("Roll ended. Root motion re-enabled.");
+                //rigidbody.linearVelocity = Vector3.zero; // Reset velocity to prevent sticking
+
                 Debug.Log("Roll ended");
             }
         }
@@ -125,6 +129,9 @@ public class Locomotion : MonoBehaviour
             // Only roll if we're moving and not already rolling
             if (inputManager.moveAmount > 0 && !animationManager.anim.GetBool("isInteract"))
             {
+                // Disable root motion during the roll
+                animationManager.anim.applyRootMotion = false;
+
                 // Get the direction to roll
                 rollDirection = cameraObject.forward * inputManager.vertical;
                 rollDirection += cameraObject.right * inputManager.horizontal;
@@ -133,6 +140,8 @@ public class Locomotion : MonoBehaviour
                 // Set up the roll
                 isRolling = true;
                 rollTimeRemaining = rollDuration;
+
+               
 
                 // Play animation
                 animationManager.PlayTargetAnimation("Rolling", true);
