@@ -19,9 +19,9 @@ TagManager:
   - 
   - 
   - Controller
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Ground
   - 
   - 
   - 

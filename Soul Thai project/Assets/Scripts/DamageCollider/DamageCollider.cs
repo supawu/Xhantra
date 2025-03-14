@@ -8,6 +8,7 @@ public class DamageCollider : MonoBehaviour
     private void Awake()
     {
         damageCollider = GetComponent<Collider>();
+        damageCollider.gameObject.SetActive(true);
         damageCollider.isTrigger = true;
         damageCollider.enabled = false;
     }
@@ -23,6 +24,7 @@ public class DamageCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        Debug.Log("Collision detected with: " + collision.name);
         if (collision.tag == "Player")
         {
             PlayerStats playerStats = collision.GetComponent<PlayerStats>();
