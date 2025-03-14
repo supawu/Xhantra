@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class BossLocomotion : MonoBehaviour
 {
-    public Transform player; // Assign the player transform in the Inspector
+    public Transform player;
     public float movementSpeed = 3f;
     public float rotationSpeed = 10f;
 
     private BossManager bossManager;
     private BossAnimationManager animationManager;
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
 
     private void Awake()
     {
         bossManager = GetComponent<BossManager>();
         animationManager = GetComponentInChildren<BossAnimationManager>();
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
 
         if (player == null)
         {
@@ -24,6 +24,8 @@ public class BossLocomotion : MonoBehaviour
 
     private void Update()
     {
+        if (bossManager.isDead || bossManager.isInteracting) return;
+
         if (player == null) return;
 
         HandleMovement();
@@ -32,15 +34,17 @@ public class BossLocomotion : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (bossManager.isInteracting) return;
+        if (animationManager.anim.GetBool("isInteract"))
+        {
+            StopMovement(); // Stop movement when attacking
+            return;
+        }
 
         Vector3 direction = (player.position - transform.position).normalized;
         direction.y = 0;
 
-        // Move towards the player
         transform.position += direction * movementSpeed * Time.deltaTime;
 
-        // Update Animator values
         float vertical = Vector3.Dot(transform.forward, direction);
         float horizontal = Vector3.Dot(transform.right, direction);
 
@@ -49,7 +53,7 @@ public class BossLocomotion : MonoBehaviour
 
     private void HandleRotation()
     {
-        if (bossManager.isInteracting) return;
+        if (!animationManager.canRotate) return; // Stop rotation during attack
 
         Vector3 direction = (player.position - transform.position).normalized;
         direction.y = 0;
@@ -58,5 +62,14 @@ public class BossLocomotion : MonoBehaviour
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    // New function to stop player movement
+    public void StopMovement()
+    {
+        if (rb != null)
+        {
+            rb.velocity = new Vector3(0, rb.velocity.y, 0); // Preserve vertical velocity for gravity
+        }
     }
 }

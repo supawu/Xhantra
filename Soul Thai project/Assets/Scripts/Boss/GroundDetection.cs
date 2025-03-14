@@ -4,10 +4,10 @@ public class GroundDetection : MonoBehaviour
 {
     public float groundCheckDistance = 0.1f; // Distance to check for ground
     public LayerMask groundLayer; // Layer for ground objects
+    public Rigidbody rb;
     public float gravity = -9.81f; // Gravity force
     public float groundOffset = 0.1f; // Small offset to keep the Boss grounded
 
-    private Rigidbody rb;
     private bool isGrounded;
 
     private void Awake()

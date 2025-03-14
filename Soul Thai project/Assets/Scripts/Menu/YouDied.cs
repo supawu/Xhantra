@@ -12,11 +12,7 @@ public class YouDied : MonoBehaviour
         PlayerStats.onPlayerDeath += ActivateDie;
     }
 
-    void OnDestroy()
-    {
-        // Unsubscribe to avoid memory leaks
-        PlayerStats.onPlayerDeath -= ActivateDie;
-    }
+  
 
     public void ActivateDie()
     {
