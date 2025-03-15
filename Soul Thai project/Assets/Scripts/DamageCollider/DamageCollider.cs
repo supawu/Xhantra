@@ -23,26 +23,43 @@ public class DamageCollider : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider collision)
+{
+    Debug.Log("Collision detected with: " + collision.name + " (Tag: " + collision.tag + ")");
+
+    if (collision.CompareTag("Player"))
     {
-        Debug.Log("Collision detected with: " + collision.name);
-        if (collision.tag == "Player")
-        {
-            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
+         Debug.Log("Collision detected with: " + collision.name + " (Tag: " + collision.tag + ")");
 
-            if (playerStats != null)
-            {
-                playerStats.TakeDamage(currentWeapomDamge);
-            }
+    if (collision.CompareTag("Player"))
+    {
+        Debug.Log("Player hit detected");
+        PlayerStats playerStats = collision.GetComponent<PlayerStats>();
+
+        if (playerStats != null)
+        {
+            playerStats.TakeDamage(currentWeapomDamge);
         }
-
-        if (collision.tag == "Enemy")
+        else
         {
-            EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
-
-            if (enemyStats != null)
-            {
-                enemyStats.TakeDamage(currentWeapomDamge);
-            }
+            Debug.LogError("PlayerStats component not found on: " + collision.name);
         }
     }
+
+    if (collision.CompareTag("Enemy"))
+    {
+        Debug.Log("Enemy hit detected with: " + collision.name);
+        EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
+
+        if (enemyStats != null)
+        {
+            Debug.Log("EnemyStats component found on: " + collision.name);
+            enemyStats.TakeDamage(currentWeapomDamge);
+        }
+        else
+        {
+            Debug.LogError("EnemyStats component not found on: " + collision.name);
+        }
+    }
+    }
+}
 }
