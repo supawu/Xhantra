@@ -8,7 +8,9 @@ public class PlayerManager : MonoBehaviour
     CameraHandler cameraHandler;
     Locomotion playerlocomotion;
 
-
+    [Header("Player Flags")]
+    public bool isUsingRightHand;
+    public bool isUsingLeftHand;
 
     private void Awake()
     {
@@ -26,7 +28,8 @@ public class PlayerManager : MonoBehaviour
         float delta = Time.deltaTime;
 
         isInteract = anim.GetBool("isInteract");
-
+        isUsingRightHand = anim.GetBool("isUsingRightHand");
+        isUsingLeftHand = anim.GetBool("isUsingLeftHand");
 
         inputManager.TickInput(delta);
         playerlocomotion.HandleMovement(delta);

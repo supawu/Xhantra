@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class WeaponSlotManager : MonoBehaviour
 {
+    PlayerManager playerManager;
     WeaponHolderSlot leftHandSlot;
     WeaponHolderSlot rightHandSlot;
 
@@ -10,6 +11,8 @@ public class WeaponSlotManager : MonoBehaviour
 
     private void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
+
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
         {
@@ -50,24 +53,21 @@ public class WeaponSlotManager : MonoBehaviour
         rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
     }
 
-    public void OpenLeftHandDamageCollider()
+    public void OpenDamageCollider()
     {
-        leftHandDamageCollider.EnableDamageCollider();
+        if (playerManager.isUsingRightHand)
+        {
+            rightHandDamageCollider.EnableDamageCollider();
+        }
+        else if (playerManager.isUsingLeftHand)
+        {
+            leftHandDamageCollider.EnableDamageCollider();
+        }
     }
-
-    public void OpenRightHandDamageCollider()
-    {
-        rightHandDamageCollider.EnableDamageCollider();
-    }
-
-    public void CloseLeftHandDamageCollider()
-    {
-        leftHandDamageCollider.DisableDamageCollider();
-    }
-
-    public void CloseRightHandDamageCollider()
+    public void CloseDamageCollider()
     {
         rightHandDamageCollider.DisableDamageCollider();
+        leftHandDamageCollider.DisableDamageCollider();
     }
 
     #endregion

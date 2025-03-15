@@ -6,6 +6,7 @@ public class EnemyStats : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public bool isDead;
+    public HealthBar healthBar;
 
     private BossManager bossManager;
     private Animator animator;
@@ -30,6 +31,7 @@ public class EnemyStats : MonoBehaviour
     {
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
         Debug.Log($"Boss initialized with {maxHealth} health.");
     }
@@ -45,6 +47,7 @@ public class EnemyStats : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0); // Ensure health doesn't go below 0
+        healthBar.SetCurrentHealth(currentHealth);
 
         Debug.Log($"Boss took {damage} damage. Current health: {currentHealth}");
 

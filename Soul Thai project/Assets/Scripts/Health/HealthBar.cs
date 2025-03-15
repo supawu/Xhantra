@@ -19,6 +19,5 @@ public class HealthBar : MonoBehaviour
     public void SetCurrentHealth(int currentHealth)
     {
         slider.value = currentHealth;
-
     }
 }
