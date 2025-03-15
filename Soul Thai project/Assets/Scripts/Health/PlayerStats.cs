@@ -1,4 +1,7 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -7,6 +10,8 @@ public class PlayerStats : MonoBehaviour
     public int currentHealth;
 
     public HealthBar healthbar;
+    public Animator anim;
+    public Image black;
 
     AnimationManager animationManager;
 
@@ -17,6 +22,10 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         animationManager = GetComponentInChildren<AnimationManager>();
+        if (animationManager == null)
+        {
+            Debug.LogError("AnimationManager not found!");
+        }
     }
 
     void Start()
@@ -40,11 +49,35 @@ public class PlayerStats : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            Debug.Log("Player Died");
             currentHealth = 0;
             animationManager.PlayTargetAnimation("Death", true);
 
-            // Trigger the death event
-            onPlayerDeath?.Invoke();
+            // Start the fade coroutine
+            StartCoroutine(FadeAndLoadScene());
+        }
+    }
+
+    public IEnumerator FadeAndLoadScene()
+    {
+        // Trigger the fade animation
+        anim.SetBool("Fade", true);
+
+        // Wait until the fade is complete (black screen)
+        yield return new WaitUntil(() => black.color.a == 1);
+
+        // Trigger the death event
+        onPlayerDeath?.Invoke();
+
+        // Load the "Die" scene
+        if (Application.CanStreamedLevelBeLoaded("Die"))
+        {
+            Debug.Log("Loading Death Scene");
+            SceneManager.LoadScene("Die");
+        }
+        else
+        {
+            Debug.LogError("Death Scene not found in build settings!");
         }
     }
 }
