@@ -36,7 +36,6 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth = currentHealth - damage;
         healthbar.SetCurrentHealth(currentHealth);
-
         animationManager.PlayTargetAnimation("GetHit", true);
 
         if (currentHealth <= 0)
