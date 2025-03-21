@@ -79,7 +79,6 @@ public class EnemyStats : MonoBehaviour
         {
             Die();
         }
-        audioManager.PlaySFX(audioManager.hitattack);
 
     }
 
