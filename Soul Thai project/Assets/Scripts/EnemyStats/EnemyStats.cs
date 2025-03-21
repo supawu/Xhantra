@@ -1,4 +1,8 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Image = UnityEngine.UI.Image;
+
 
 public class EnemyStats : MonoBehaviour
 {
@@ -11,6 +15,8 @@ public class EnemyStats : MonoBehaviour
 
     private BossManager bossManager;
     private Animator animator;
+    public Animator anim;
+    public Image black;
 
     private void Awake()
     {
@@ -47,11 +53,11 @@ public class EnemyStats : MonoBehaviour
     {
         if (isDead) return; // Ignore damage if already dead
 
-        
+
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0); // Ensure health doesn't go below 0
         healthBar.SetCurrentHealth(currentHealth);
-        
+
 
         Debug.Log($"Boss took {damage} damage. Current health: {currentHealth}");
 
@@ -99,6 +105,30 @@ public class EnemyStats : MonoBehaviour
         GetComponent<BossAI>().enabled = false;
         GetComponent<Collider>().enabled = false; // Disable collider to prevent further interactions
 
+        // Start the fade coroutine
+        StartCoroutine(FadeAndLoadScene());
+
+
         Debug.Log("Boss has died!");
+    }
+    public IEnumerator FadeAndLoadScene()
+    {
+        // Trigger the fade animation
+        anim.SetBool("Fade", true);
+
+        // Wait until the fade is complete (black screen)
+        yield return new WaitUntil(() => black.color.a == 1);
+
+        // Add a delay before loading the "Win" scene
+        float delay = 1f; // Delay in seconds (adjust as needed)
+        yield return new WaitForSeconds(delay);
+
+        // Load the "Win" scene
+        if (Application.CanStreamedLevelBeLoaded("Win"))
+        {
+            Debug.Log("Loading Win Scene");
+            SceneManager.LoadScene("Win");
+        }
+
     }
 }
