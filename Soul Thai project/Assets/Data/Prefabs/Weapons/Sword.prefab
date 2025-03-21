@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8080202253842516085}
   m_Layer: 0
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 856471936889566745}
   m_Layer: 0
   m_Name: Sword Pivot
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,9 +112,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2880405010186221417, guid: 358d1cdf69bcbe94d83f76ae637969e6, type: 3}
+      propertyPath: m_Name
+      value: PlayerSword
+      objectReference: {fileID: 0}
+    - target: {fileID: 2880405010186221417, guid: 358d1cdf69bcbe94d83f76ae637969e6, type: 3}
+      propertyPath: m_TagString
+      value: PlayerWeapon
+      objectReference: {fileID: 0}
     - target: {fileID: 4541876070563205878, guid: 358d1cdf69bcbe94d83f76ae637969e6, type: 3}
       propertyPath: m_Name
       value: SwordBronze
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541876070563205878, guid: 358d1cdf69bcbe94d83f76ae637969e6, type: 3}
+      propertyPath: m_TagString
+      value: PlayerWeapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -165,7 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d398459d91a2d48a36ad7b6e21d9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapomDamge: 25
+  damage: 25
+  isPlayerWeapon: 1
 --- !u!4 &2589997729097991764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 443250886990297812, guid: 358d1cdf69bcbe94d83f76ae637969e6, type: 3}

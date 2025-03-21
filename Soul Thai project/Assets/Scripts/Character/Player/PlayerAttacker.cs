@@ -25,7 +25,7 @@ public class PlayerAttacker : MonoBehaviour
             
             // Play attack animation
             animatorHandler.PlayTargetAnimation(weapon.MeleeAttack_OneHanded, true);
-            audioManager.PlaySFX(audioManager.hit);
+            audioManager.PlaySFX(audioManager.attack1);
         }
     }
     
@@ -38,7 +38,7 @@ public class PlayerAttacker : MonoBehaviour
             
             // Play attack animation
             animatorHandler.PlayTargetAnimation(weapon.MeleeAttack_TwoHanded, true);
-            audioManager.PlaySFX(audioManager.hardHit);
+            audioManager.PlaySFX(audioManager.attack2);
         }
     }
     

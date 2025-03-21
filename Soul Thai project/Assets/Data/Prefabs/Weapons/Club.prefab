@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3817100717629620204}
   m_Layer: 0
   m_Name: Club
-  m_TagString: Untagged
+  m_TagString: BossWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,11 +43,11 @@ GameObject:
   - component: {fileID: 6563020310842642045}
   - component: {fileID: 7834947949430571480}
   - component: {fileID: 5431241025885369618}
-  - component: {fileID: 6485723670889891294}
   - component: {fileID: 9019640299879806314}
+  - component: {fileID: 3052906010707982486}
   m_Layer: 0
   m_Name: BossWeapon
-  m_TagString: Untagged
+  m_TagString: BossWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6485723670889891294
+--- !u!114 &9019640299879806314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791445089297585351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d398459d91a2d48a36ad7b6e21d9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 25
+  isPlayerWeapon: 0
+--- !u!65 &3052906010707982486
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,21 +153,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.00272634, y: 0.011054216, z: 0.012346575}
-  m_Center: {x: -0.00030727996, y: 0.003543341, z: -0.0038417445}
---- !u!114 &9019640299879806314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5791445089297585351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3d398459d91a2d48a36ad7b6e21d9f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWeapomDamge: 25
+  m_Size: {x: 0.002726346, y: 0.018130453, z: 0.020034052}
+  m_Center: {x: -0.00030728008, y: 0.000005254496, z: 0.0000019865702}
 --- !u!1 &5993144839750864216
 GameObject:
   m_ObjectHideFlags: 0

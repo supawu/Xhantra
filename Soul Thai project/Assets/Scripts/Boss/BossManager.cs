@@ -9,33 +9,38 @@ public class BossManager : MonoBehaviour
     private BossAI ai;
     private BossAnimationManager animationManager;
     private Rigidbody rb;
+        AudioManager audioManager;
+
 
     private void Awake()
     {
         locomotion = GetComponent<BossLocomotion>();
         ai = GetComponent<BossAI>();
         animationManager = GetComponentInChildren<BossAnimationManager>();
+        audioManager = GetComponent<AudioManager>();
+
         rb = GetComponent<Rigidbody>();
     }
 
-    public void TakeDamage(int damage)
+    /*public void HandleDamageInteraction()
     {
         if (isDead) return; // Ignore damage if already dead
 
         // Unfreeze Rigidbody constraints temporarily
-        if (rb != null)
+        /*if (rb != null)
         {
             rb.constraints = RigidbodyConstraints.None;
         }
 
         // Trigger "GetHit" animation
-        animationManager.PlayTargetAnimation("GetHit", true);
-        isInteracting = true;
+        //animationManager.PlayTargetAnimation("GetHit", true);
+        //isInteracting = true;
+        audioManager.PlaySFX(audioManager.attack2);
 
-        Debug.Log("Boss took damage!");
-    }
+        Debug.Log("Boss handled damage interaction!");
+    } */
 
-    public void Die()
+    public void HandleDeath()
     {
         isDead = true;
 
@@ -55,7 +60,7 @@ public class BossManager : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll; // Freeze position and rotation
         }
 
-        Debug.Log("Boss has died!");
+        Debug.Log("Boss handled death!");
     }
 
     public void ResetInteracting()

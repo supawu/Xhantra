@@ -9,8 +9,12 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Clip")]
     public AudioClip background;
-    public AudioClip hit;
-    public AudioClip hardHit;
+    public AudioClip attack1;
+    public AudioClip attack2;
+    public AudioClip hitattack;
+    public AudioClip win;
+
+   
 
 
     void Start()

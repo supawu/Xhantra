@@ -7,6 +7,7 @@ public class EnemyStats : MonoBehaviour
     public int currentHealth;
     public bool isDead;
     public HealthBar healthBar;
+    AudioManager audioManager;
 
     private BossManager bossManager;
     private Animator animator;
@@ -15,6 +16,7 @@ public class EnemyStats : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         bossManager = GetComponent<BossManager>();
+        audioManager = GetComponent<AudioManager>();
 
         if (animator == null)
         {
@@ -45,30 +47,34 @@ public class EnemyStats : MonoBehaviour
     {
         if (isDead) return; // Ignore damage if already dead
 
+        
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0); // Ensure health doesn't go below 0
         healthBar.SetCurrentHealth(currentHealth);
+        
 
         Debug.Log($"Boss took {damage} damage. Current health: {currentHealth}");
 
         // Trigger "GetHit" animation
-        if (animator != null)
+        /*if (animator != null)
         {
             animator.SetTrigger("GetHit");
             Debug.Log("GetHit trigger set.");
-        }
+        }*/
 
         // Notify BossManager that the Boss is taking damage
-        if (bossManager != null)
+        /*if (bossManager != null)
         {
-            bossManager.TakeDamage(damage);
-        }
+            bossManager.HandleDamageInteraction();
+        }*/
 
         // Check for death
         if (currentHealth <= 0)
         {
             Die();
         }
+        audioManager.PlaySFX(audioManager.hitattack);
+
     }
 
     private void Die()
@@ -85,7 +91,7 @@ public class EnemyStats : MonoBehaviour
         // Notify BossManager that the Boss has died
         if (bossManager != null)
         {
-            bossManager.Die();
+            bossManager.HandleDeath();
         }
 
         // Disable movement and AI

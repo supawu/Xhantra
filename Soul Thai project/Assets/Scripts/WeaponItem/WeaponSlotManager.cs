@@ -28,7 +28,7 @@ public class WeaponSlotManager : MonoBehaviour
     }
 
     #region Handle Weapon's Damage Collider
-    
+
     public void LoadWeaponOnSlot(WeaponItem weaponItem, bool isLeft)
     {
         if (isLeft)
@@ -55,19 +55,41 @@ public class WeaponSlotManager : MonoBehaviour
 
     public void OpenDamageCollider()
     {
-        if (playerManager.isUsingRightHand)
-        {
-            rightHandDamageCollider.EnableDamageCollider();
-        }
-        else if (playerManager.isUsingLeftHand)
-        {
-            leftHandDamageCollider.EnableDamageCollider();
-        }
+        Debug.Log("OpenDamageCollider called on " + gameObject.name);
+       
+            if (rightHandDamageCollider != null)
+            {
+                rightHandDamageCollider.EnableDamageCollider();
+                Debug.Log("Right hand damage collider enabled on " + rightHandDamageCollider.gameObject.name);
+            }
+            else
+            {
+                Debug.LogError("Right hand damage collider is null");
+            }
+        
+       
+            if (leftHandDamageCollider != null)
+            {
+                leftHandDamageCollider.EnableDamageCollider();
+                Debug.Log("Left hand damage collider enabled on " + leftHandDamageCollider.gameObject.name);
+            }
+            else
+            {
+                Debug.LogError("Left hand damage collider is null");
+            }
+        
     }
     public void CloseDamageCollider()
     {
-        rightHandDamageCollider.DisableDamageCollider();
-        leftHandDamageCollider.DisableDamageCollider();
+        if (rightHandDamageCollider != null)
+        {
+            rightHandDamageCollider.DisableDamageCollider();
+        }
+
+        if (leftHandDamageCollider != null)
+        {
+            leftHandDamageCollider.DisableDamageCollider();
+        }
     }
 
     #endregion
