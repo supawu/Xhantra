@@ -43,6 +43,7 @@ public class PauseMenu : MonoBehaviour
         else
         {
             Pause();
+            
         }
     }
 
@@ -52,6 +53,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f; // Freeze time
         isPaused = true;
         Debug.Log("Game Paused. Time Scale: " + Time.timeScale);
+        Cursor.visible = false;
     }
 
     public void Resume()
@@ -60,5 +62,6 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f; // Unfreeze time
         isPaused = false;
         Debug.Log("Game Resumed. Time Scale: " + Time.timeScale);
+        Cursor.visible = true;
     }
 }

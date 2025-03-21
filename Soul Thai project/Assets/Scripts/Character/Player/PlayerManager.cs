@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
         inputManager = GetComponent<InputManager>();
         anim = GetComponentInChildren<Animator>();
         playerlocomotion = GetComponent<Locomotion>();
+        Cursor.visible = false;
     }
 
     void Update()

@@ -9456,7 +9456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1732559736886434323, guid: 200a780af076de845939263731025731, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -680
+      value: -599
       objectReference: {fileID: 0}
     - target: {fileID: 1732559736886434323, guid: 200a780af076de845939263731025731, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9475,6 +9475,18 @@ PrefabInstance:
       value: 'Yak
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621631088605467978, guid: 200a780af076de845939263731025731, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4e0b5f934083c604388ef3ab999f9a6f, type: 2}
+    - target: {fileID: 2621631088605467978, guid: 200a780af076de845939263731025731, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1200414107002683856, guid: 4e0b5f934083c604388ef3ab999f9a6f, type: 2}
+    - target: {fileID: 2621631088605467978, guid: 200a780af076de845939263731025731, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3011600653945423719, guid: 200a780af076de845939263731025731, type: 3}
       propertyPath: m_AnchorMax.x
